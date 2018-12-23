@@ -6,15 +6,27 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 
 // Require all models
-const db = require("./models");
+const db = require("../models");
 
 // Routes
 router.get("/", function (req, res) {
-    res.send(index.html);
+    Article.find({ saved: false }, function (error, found) {
+        if (error) {
+            console.log(error);
+        } else if (found.length === 0) {
+            res.render("empty")
+        } else {
+
+            var hbsObject = {
+                articles: found
+            };
+            res.render("index", hbsObject);
+        }
+    });
 });
 
-// A GET route for scraping the invision blog
-router.get("/scrape", function (req, res) {
+// A GET route for scraping
+router.get("/api/fetch", function (req, res) {
 
     axios.get("https://www.nytimes.com").then(function (response) {
 
@@ -22,22 +34,16 @@ router.get("/scrape", function (req, res) {
 
         $(".title-link").each(function (i, element) {
 
-            let title = $(element).children().text();
-            let link = $(element).attr("href");
-            let snippet = $(element).siblings('p').text().trim();
-            let articleCreated = new Timestamp();
-
-            let result = {
-                title: title,
-                link: link,
-                snippet: snippet,
-                articleCreated: articleCreated,
-                isSaved: false
-            }
+            let result = {};
+            result.title = $(this.children().text();
+            result.link = $(this).attr("href");
+            result.snippet = $(element).siblings('p').text().trim();
+            result.articleCreated = new Date();
+            result.isSaved = false;
 
             console.log(result);
 
-            db.Article.findOne({ title: title }).then(function (data) {
+            db.Article.findOne({ title: result.title }).then(function (data) {
 
                 console.log(data);
 

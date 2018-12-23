@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>NYT Mongo Scraper</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Mongo Scraper</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
+                <li><a id="saved" href="/saved">Saved Articles</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="/api/fetch" method="get">
+                <button class="btn btn-danger scrape">Scrape New Articles!</button>
+            </form>
+        </div>
+    </nav>
+    <div class="main-img-container">
+        <img class="main-img" src="/public/assets/img/" alt="header-image-nyt-papers" />
+    </div>
+
+    {{{body}}}
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/public/assets/js/app.js"></script>
+
+</body>
+<footer class="footer">
+    <div class="footer_container">
+        <div>
+            <h5 class="text-white">connect <a href="https://github.com/riffon3000/NYT-Mongo-Scraper" target="_blank"
+                    class="footer-icon"><i class="fab fa-github"></i></a> | <span class="text-white small text-muted align-content-center">copyright&copy;2018</span></h5>
+        </div>
+
+    </div>
+</footer>
+
+</html>
