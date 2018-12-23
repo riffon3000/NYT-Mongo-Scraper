@@ -1,13 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
-// Scraping tools; Axios is a promised-based http library, similar to jQuery's Ajax method. It works on the client and on the server
-const axios = require("axios");
-const cheerio = require("cheerio");
-
-// Require all models
-const db = require("./models");
-
 // Initialize Express
 const PORT = process.env.PORT || 3000;
 const app = express();
