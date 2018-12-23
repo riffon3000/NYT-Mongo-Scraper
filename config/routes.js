@@ -1,11 +1,9 @@
-let scrape = require("../scripts/scrape");
-let Article = require("../models/Article");
-let Note = require("../models/Note");
-let articlesController = require("../controllers/articles");
-let notesController = require("../controllers/notes");
+const scrape = require("../scripts/scrape.js");
+const Article = require("../models/Article.js");
+const Note = require("../models/Note.js");
+const articlesController = require("../controllers/controller.js");
 
 module.exports = function (router) {
-
 
     router.get("/", function (req, res) {
         Article.find({ saved: false }, function (error, found) {
@@ -60,7 +58,7 @@ module.exports = function (router) {
     });
 
     //retrieve the notes attached to saved articles to be displayed in the notes modal
-    router.get('/notes/:id', function (req, res) {
+    router.get("/notes/:id", function (req, res) {
         //Query to find the matching id to the passed in it
         Article.findOne({ _id: req.params.id })
             .populate("note") //Populate all of the notes associated with it
@@ -74,7 +72,7 @@ module.exports = function (router) {
     });
 
     // Add a note to a saved article
-    router.post('/notes/:id', function (req, res) {
+    router.post("/notes/:id", function (req, res) {
         //create a new note with req.body
         let newNote = new Note(req.body);
         //save newNote to the db
@@ -93,10 +91,10 @@ module.exports = function (router) {
         });
     });
 
-    router.get('/deleteNote/:id', function (req, res) {
+    router.get("/deleteNote/:id", function (req, res) {
         Note.remove({ "_id": req.params.id }, function (err, newdoc) {
             if (err) console.log(err);
-            res.redirect('/saved'); //redirect to reload the page
+            res.redirect("/saved"); //redirect to reload the page
         });
     });
 

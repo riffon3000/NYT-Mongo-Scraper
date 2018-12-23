@@ -1,14 +1,14 @@
-var scrape = require("../scripts/scrape");
-var Article = require("../models/Article");
+let scrape = require("../scripts/scrape");
+let Article = require("../models");
 
 module.exports = {
     fetch: function (callback) {
 
         scrape(function (data) {
 
-            var articlesArr = data;
+            let articlesArr = data;
             // Make sure each article object has a date and is not saved by default
-            for (var i = 0; i < articlesArr.length; i++) {
+            for (let i = 0; i < articlesArr.length; i++) {
                 articlesArr[i].date = new Date();
                 articlesArr[i].saved = false;
                 articlesArr[i].note = [];

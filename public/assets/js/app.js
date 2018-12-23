@@ -27,7 +27,7 @@ $(document).ready(function() {
       let articleToSave = {};
       articleToSave.id = $(this).data("id");
       articleToSave.saved = true;
-      $.ajax({
+      $.axios({
           method: "PATCH",
           url: "/api/articles",
           data: articleToSave
@@ -40,7 +40,7 @@ $(document).ready(function() {
       let articleToremoveSaved = {};
       articleToremoveSaved.id = $(this).data("id");
       articleToremoveSaved.saved = false;
-      $.ajax({
+      $.axios({
           method: "PATCH",
           url: "/api/articles",
           data: articleToremoveSaved
@@ -56,7 +56,7 @@ $(document).ready(function() {
       //attach news article _id to the save button in the modal for use in save post
       $("#saveButton").attr({"data-value": thisId});
 
-      //make an ajax call for the notes attached to this article
+      //make an axios call for the notes attached to this article
       $.get("/notes/" + thisId, function(data){
           console.log(data);
           //empty modal title, textarea and notes
@@ -83,7 +83,7 @@ $(document).ready(function() {
 
 
   // Run a POST request to change the note, using what's entered in the inputs
-    $.ajax({
+    $.axios({
       method: "POST",
       url: "/notes/" + thisId,
       data: {

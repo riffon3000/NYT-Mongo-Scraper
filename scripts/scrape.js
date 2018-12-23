@@ -1,9 +1,9 @@
-// Scraping tools; Axios is a promised-based http library, similar to jQuery's Ajax method. It works on the client and on the server
+// Scraping tools; Axios is a promised-based http library, similar to jQuery"s Ajax method. It works on the client and on the server
 const axios = require("axios");
 const cheerio = require("cheerio");
 
 //scrape articles from the New YorK Times
-let scrape = function (callback) {
+const scrape = function (callback) {
 
     let articlesArr = [];
 
@@ -17,9 +17,9 @@ let scrape = function (callback) {
             let result = {};
 
             // Add the text and href of every link, and save them as properties of the result object
-            result.title = $(this).children().text();
-            result.link = $(this).attr("href");
-            result.snippet = $(this).siblings('p').text().trim();
+            result.title = $(this).children("a").text();
+            result.link = $(this).children("a").attr("href");
+            result.snippet = $(this).siblings("p").text().trim();
             result.articleCreated = new Date();
             result.isSaved = false;
 
@@ -27,6 +27,9 @@ let scrape = function (callback) {
                 articlesArr.push(result);
             }
         });
+        // Send a message to the client
+        res.send("Scrape Complete");
+
         callback(articlesArr);
     });
 
