@@ -5,16 +5,16 @@ const cheerio = require("cheerio");
 //scrape articles from the New YorK Times
 const scrape = function (callback) {
 
-    let articlesArr = [];
+    const articlesArr = [];
 
     axios.get("https://www.nytimes.com").then(function (response) {
 
-        let $ = cheerio.load(response.data);
+        const $ = cheerio.load(response.data);
 
 
         $("h2.story-heading").each(function (i, element) {
 
-            let result = {};
+            const result = {};
 
             // Add the text and href of every link, and save them as properties of the result object
             result.title = $(this).children("a").text();
@@ -26,10 +26,9 @@ const scrape = function (callback) {
             if (result.title !== "" && result.link !== "") {
                 articlesArr.push(result);
             }
+            // Send a message to the client
+            res.send("Scrape Complete");
         });
-        // Send a message to the client
-        res.send("Scrape Complete");
-
         callback(articlesArr);
     });
 

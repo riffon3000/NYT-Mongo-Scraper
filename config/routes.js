@@ -1,7 +1,7 @@
-const scrape = require("../scripts/scrape.js");
-const Article = require("../models/Article.js");
-const Note = require("../models/Note.js");
-const articlesController = require("../controllers/controller.js");
+const scrape = require("../scripts/scrape");
+const Article = require("../models/Article");
+const Note = require("../models/Note");
+const articlesController = require("../controllers/controller");
 
 module.exports = function (router) {
 
